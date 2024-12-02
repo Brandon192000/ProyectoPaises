@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Países</title>
+    <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="black">
+        <div class="nav-wrapper container" style="height: 100px; padding: 0 10px;">
+            <a href="/html/index.html" class="brand-logo">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" style="height: 100%; max-height: 65px; width: auto;">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/html/index.html">Inicio</a></li>
+                <li><a href="/html/BuscarPorNombre.html">Países por Nombre</a></li>
+                <li><a href="#">Países por Región</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    
+    <main class="container">
+
+        <h4 class="center-align">Lista de Países</h4>
+        <ul class="collection" id="listaPaises">
+            
+        </ul>
+
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="modalPais" class="modal">
+        <div class="modal-content">
+            <h4 id="nombrePais" class="center-align"></h4>
+            <div class="center-align">
+                <img id="banderaPais" alt="Bandera del País" style="width: 150px; height: auto; margin: 20px 0;">
+            </div>
+            <div class="pais-detalles">
+                <p><strong>Nombre nativo:</strong> <span id= "nativo"></span></p>
+                <p><strong>Población:</strong> <span id="poblacionPais"></span></p>
+                <p><strong>Idiomas:</strong> <span id="lenguajesPais"></span></p>
+                <p><strong>Capital:</strong> <span id="capitalPais"></span></p>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close btn blue darken-1">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/index.js"></script>
+
+</body>
+</html>

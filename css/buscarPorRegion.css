@@ -1,0 +1,66 @@
+/* General */
+body {
+    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+}
+
+/* Main */
+main {
+    flex: 1; /* Toma el espacio restante entre el nav y el footer */
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    text-align: center; /* Texto centrado */
+    padding: 20px; /* Espacio interno opcional */
+}
+
+/* Navbar */
+nav {
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    position: static; /* Queda fijo arriba */
+    margin-bottom: 0; /* Elimina márgenes adicionales */
+}
+
+/* Card-panel */
+.card-panel {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 600px; /* Ajusta el tamaño máximo */
+    padding: 30px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    background-color: #fff; /* Fondo blanco */
+}
+
+/* Footer */
+footer {
+    background-color: #e3f2fd;
+    padding: 15px 0; /* Espacio interno arriba y abajo */
+    text-align: center; /* Texto centrado */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* Resultados */
+#resultados {
+    margin-top: 20px; /* Espacio superior */
+}
+
+.collection-item {
+    display: flex;
+    justify-content: space-between; /* Elementos separados horizontalmente */
+    align-items: center; /* Alineados verticalmente */
+    padding: 10px 15px; /* Espacio interno */
+}
+
+.collection-item .btn {
+    background-color: #2196f3; /* Color de fondo del botón */
+    text-transform: none; /* Texto sin transformaciones */
+}
+
+.collection-item .btn:hover {
+    background-color: #1e88e5; /* Color de fondo al pasar el cursor */
+}

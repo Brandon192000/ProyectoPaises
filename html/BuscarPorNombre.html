@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar por Nombre</title>
+    <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/nombre.css">
+</head>
+<body>
+
+    <header>
+        
+    <!-- Navbar -->
+    <nav class="black">
+        <div class="nav-wrapper container" style="height: 100px; padding: 0 10px;">
+            <a href="/html/index.html" class="brand-logo">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" style="height: 100%; max-height: 65px; width: auto;">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/html/index.html">Inicio</a></li>
+                <li><a href="/html/BuscarPorNombre.html">Países por Nombre</a></li>
+                <li><a href="/html/buscarPorRegion.html">Países por Región</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    </header>
+    <!-- Contenedor principal -->
+    <div class="container contenedor-buscdorCustom">
+        <!-- Card para centrar contenido -->
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel white">
+                    <h4 class="center-align blue-text text-darken-3">Buscar por Nombre</h4>
+                    <!-- Formulario de búsqueda -->
+                    <div class="input-field">
+                        <i class="material-icons prefix">location_searching</i>
+                        <input id="inputBuscar" type="text" class="validate" placeholder="Ingrese el nombre del país">
+                    </div>
+                    <div class="center-align">
+                        <button id="btnBuscar" class="btn waves-effect waves-light blue darken-3" type="button">
+                            Buscar
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        <div id="resultados" class="row">
+
+        
+        </div>
+
+        
+        <!-- Modal Structure -->
+        <div id="modalPais" class="modal">
+            <div class="modal-content">
+                <h4 id="nombrePais" class="center-align"></h4>
+                <div class="center-align">
+                    <img id="banderaPais" alt="Bandera del País" style="width: 150px; height: auto; margin: 20px 0;">
+                </div>
+                <div class="pais-detalles">
+                    <p><strong>Nombre nativo:</strong> <span id="nativo"></span></p>
+                    <p><strong>Población:</strong> <span id="poblacionPais"></span></p>
+                    <p><strong>Idiomas:</strong> <span id="lenguajesPais"></span></p>
+                    <p><strong>Capital:</strong> <span id="capitalPais"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-close btn blue darken-1">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/buscarProNombre.js"></script>
+
+</body>
+</html>
+
