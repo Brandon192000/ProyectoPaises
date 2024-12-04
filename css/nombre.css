@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column; 
     font-family: 'Roboto', sans-serif;
-    background-image: url('img/pngtree-light-blue-marble-vector-pattern-a-stunning-texture-of-marble-image_13909367.png');
+    background-image: url('/img/pngtree-light-blue-marble-vector-pattern-a-stunning-texture-of-marble-image_13909367.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
