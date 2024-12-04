@@ -1,17 +1,20 @@
+/* Estilos base */
 body {
-    background-image: url('/img/pngtree-light-blue-marble-vector-pattern-a-stunning-texture-of-marble-image_13909367.png'); /* Reemplaza con la URL de tu imagen */
-    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen */
-    background-attachment: fixed; /* Hace que la imagen sea fija al hacer scroll */
-    font-family: 'Roboto', sans-serif;
+    height: 100%; 
     margin: 0;
     padding: 0;
-    position: relative;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    font-family: 'Roboto', sans-serif;
+    background-image: url('/img/pngtree-light-blue-marble-vector-pattern-a-stunning-texture-of-marble-image_13909367.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     overflow-x: hidden;
+    position: relative; 
 }
 
-/* Efecto de vidrio con ::before */
 body::before {
     content: '';
     position: absolute;
@@ -19,50 +22,118 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(8px); /* Efecto de desenfoque */
-    background-color: rgba(255, 255, 255, 0.3); /* Color semitransparente superpuesto */
-    z-index: -1; /* Coloca el efecto detrás del contenido */
+    backdrop-filter: blur(8px); 
+    background-color: rgba(255, 255, 255, 0.3); 
+    z-index: -1; 
+    transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
 }
 
-.collection-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 15px;
-    background-color: #eeee;
-    border: solid 1px rgb(175, 176, 177);
+/* Footer */
+.footer-custom {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    margin-top: 1rem; 
 }
 
-.collection-item .btn {
-    background-color: #2196f3;
-    text-transform: none;
+/* Lista */
+.scrollLista {
+    background-color: #1e88e55f;
+    overflow-y: scroll;
+    border: #252525 solid 2px;
+    padding: 10px;
+    height: 600px;
+    width: 71%;
+    max-width: 800px;
 }
 
-.collection-item .btn:hover {
+/* Imagen del navbar */
+.imagennav {
+    height: 100%;
+    max-height: 62px;
+    width: auto;
+}
+
+/* Estilos para SideNav */
+.sidenav-custom {
+    background-color: #252525; /* Fondo oscuro */
+    color: white;
+}
+
+.sidenav-custom a {
+    color: white;
+    font-weight: bold;
+}
+
+.sidenav-header {
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+.sidenav-custom a:hover {
     background-color: #1e88e5;
 }
 
 
-.modal {
-    max-width: 500px;
-    border-radius: 10px;
+@media screen and (max-width: 992px) {
+    .scrollLista {
+        width: 90%;
+        height: 500px; /* Ajuste para pantallas medianas */
+    }
+    .footer-custom {
+        margin-top: 2rem;
+    }
+    .custom-Buscar {
+        margin: 1rem auto;
+        width: 90%;
+    }
+    .imagennav {
+        max-height: 55px;
+    }
+    .footer-custom {
+        margin-top: 9.8rem;
+    }
 }
 
-.modal-content {
-    text-align: left;
+@media screen and (max-width: 600px) {
+    .tituloPaises {
+        font-size: 20px; /* Tamaño reducido */
+    }
+    .scrollLista {
+        height: 400px;
+        width: 100%; /* Ajuste total para pantallas pequeñas */
+    }
+    .custom-Buscar {
+        margin: 10px;
+        width: 95%;
+    }
+    .imagennav {
+        max-height: 55px;
+    }
+    .footer-custom {
+        margin-top: 11.5rem;
+    }
 }
 
-.pais-detalles p {
-    margin: 10px 0;
-    font-size: 16px;
-    line-height: 1.5;
+/* Ajustes adicionales */
+.collection-item {
+    display: flex;
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    align-items: flex-start;
+    padding: 15px;
+    border: solid 1px black;
+    width: 100%; /* Asegura que tome todo el ancho disponible */
 }
 
-.brand-logo i {
-    vertical-align: middle;
+.collection-item .btn {
+    margin-top: 10px; /* Espaciado entre el contenido y el botón */
+    width: 100%; /* Botón responsivo */
+    text-align: center;
+    background-color: #2196f3;
 }
 
-
-.contenedor-buscdorCustom{
-    margin-top: 20rem;
+.collection-item .btn:hover {
+    background-color: #1e88e5;
 }

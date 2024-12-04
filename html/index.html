@@ -3,61 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Países</title>
+    <title>Página Principal</title>
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/index.css">
-
 </head>
 <body>
-    <!-- Navbar -->
+
+    <!-- Barra de navegación -->
     <nav class="black">
         <div class="nav-wrapper container" style="height: 100px; padding: 0 10px;">
-            <a href="/html/index.html" class="brand-logo">
-                <img src="/img/earth-11015_640.jpg" alt="Logo" style="height: 100%; max-height: 65px; width: auto;">
+            <!-- Botón para abrir el SideNav -->
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" class="imagennav">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/html/index.html">Inicio</a></li>
-                <li><a href="/html/BuscarPorNombre.html">Países por Nombre</a></li>
-                <li><a href="#">Países por Región</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="/html/BuscarPorNombre.html">Busqueda por Nombre</a></li>
+                <li><a href="/html/buscarPorRegion.html">Busqueda por Región</a></li>
             </ul>
         </div>
     </nav>
-    
 
-    
+    <!-- Menú lateral (SideNav) para móviles -->
+    <ul class="sidenav sidenav-custom" id="mobile-menu">
+        <!-- Logo en el menú lateral -->
+        <li>
+            <div class="sidenav-header center-align">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" class="responsive-img">
+                <h5 class="white-text" style="margin-top: 10px;">Gestión de Países</h5>
+            </div>
+        </li>
+        <li><a href="#" class="white-text"><i class="material-icons white-text">home</i>Inicio</a></li>
+        <li><a href="/html/BuscarPorNombre.html" class="white-text"><i class="material-icons white-text">search</i>Busqueda por Nombre</a></li>
+        <li><a href="/html/buscarPorRegion.html" class="white-text"><i class="material-icons white-text">map</i>Busqueda por Región</a></li>
+    </ul>
+
     <main class="container">
+        <div class="custom-description z-depth-3">
+            <h5 class="center-align tituloDescripcioPaginas">Sobre la Gestión de Países</h5>
+            <p class="center-align">
+                En esta página encontrarás herramientas para explorar información detallada sobre países de todo el mundo. 
+                Podrás buscar por nombre o descubrir países según su región. ¡Sumérgete en el conocimiento global y explora nuestro contenido interactivo!
+            </p>
+        </div>
+        <div class="row">
 
-        <h4 class="center-align">Lista de Países</h4>
-        <ul class="collection" id="listaPaises">
-            
-        </ul>
+            <!-- Tarjeta de Buscar por Nombre -->
+            <div class="col s12 m6">
+                <div class="card horizontal same-height">
+                    <div class="card-image">
+                        <img src="/img/world-map-with-country-names-free-vector.jpg" alt="Buscar por Nombre">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <h5>Buscar por Nombre</h5>
+                            <p>Encuentra información detallada sobre un país buscando por su nombre. Obtén datos como su población, idiomas, capital, y mucho más.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/html/BuscarPorNombre.html" class="btn blue darken-1">Ir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Tarjeta de Buscar por Región -->
+            <div class="col s12 m6">
+                <div class="card horizontal same-height">
+                    <div class="card-image">
+                        <img src="/img/unnamed.png" alt="Buscar por Región">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <h5>Buscar por Región</h5>
+                            <p>Explora países por región y descubre detalles interesantes como su nombre nativo, bandera, y otros datos relevantes.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/html/buscarPorRegion.html" class="btn blue darken-1">Ir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <!-- Modal Structure -->
-    <div id="modalPais" class="modal">
-        <div class="modal-content">
-            <h4 id="nombrePais" class="center-align"></h4>
-            <div class="center-align">
-                <img id="banderaPais" alt="Bandera del País" style="width: 150px; height: auto; margin: 20px 0;">
-            </div>
-            <div class="pais-detalles">
-                <p><strong>Nombre nativo:</strong> <span id= "nativo"></span></p>
-                <p><strong>Población:</strong> <span id="poblacionPais"></span></p>
-                <p><strong>Idiomas:</strong> <span id="lenguajesPais"></span></p>
-                <p><strong>Capital:</strong> <span id="capitalPais"></span></p>
+    <footer class="footer-custom">
+        <div class="center-align">&copy; 2024, Derechos reservados Brandon Blanco Chinchilla</div>
+    </footer>
 
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="modal-close btn blue darken-1">Cerrar</button>
-        </div>
-    </div>
-
+    <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="/js/index.js"></script>
-
+    <script src="/css/index.css"></script>
+    <script>
+        // Inicializa el SideNav para móviles
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidenavs = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(sidenavs);
+        });
+    </script>
 </body>
 </html>

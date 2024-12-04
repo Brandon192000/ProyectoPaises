@@ -1,90 +1,88 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const inputBuscar = document.getElementById("inputBuscar");
-
-  
-    inputBuscar.addEventListener("input", (evento) => {
-
-        inputBuscar.value = inputBuscar.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, "");///uso el replace para elimiar numeros de texto que es ingresado
-
-    });
-
-    const btnBuscar = document.getElementById("btnBuscar");
-    btnBuscar.addEventListener("click", buscarPorNombre);
-});
-
-
-
-async function buscarPorNombre() {
-
-    const resultados = document.getElementById("resultados");
-    const nombre = document.getElementById("inputBuscar").value.toLowerCase();
-
-    if (nombre === "") {
-
-        alert("Por favor, ingresa un nombre valido sin vacios.");
-        return;
-
-    }
-
-    resultados.innerHTML = ""; // Limpiar los resultados previos
+async function listarPaises() {
+    const listaDePaises = document.getElementById("listaPaises"); // Contenedor donde muestro los países
 
     try {
+        let datosApi; // Variable para almacenar los datos
 
-        let datosApi = JSON.parse(localStorage.getItem("paises"));
+        // Verifico si hay datos en el localStorage
+        if (localStorage.getItem("paises")) {
 
-        if (datosApi.length === 0) {
-            // Si no están en el localStorage, hacer la solicitud
-            let respuestaApi = await fetch("https://restcountries.com/v3.1/all");
+            console.log("Cargando datos desde el localStorage");
+            datosApi = JSON.parse(localStorage.getItem("paises")); // Obtengo los datos del localStorage
+
+        } else {
+
+            console.log("Solicitando datos a la API");
+
+            const respuestaApi = await fetch("https://restcountries.com/v3.1/all"); // Solicito los datos a la API
+
             if (!respuestaApi.ok) {
-                alert("Error al obtener los datos api");
+                throw new Error("Error al obtener los datos de la API"); // Manejo de errores en caso de respuesta no OK
             }
-            datosApi = await respuestaApi.json();
-            localStorage.setItem("paises", JSON.stringify(datosApi));
+
+            datosApi = await respuestaApi.json(); // Paso a JSON
+
+            localStorage.setItem("paises", JSON.stringify(datosApi)); // Guardo los datos en el localStorage
+
         }
 
-        // Filtrar los países por el nombre ingresado
-        const resultado = datosApi.filter(pais =>pais.name.common.toLowerCase().includes(nombre));
+        // Limpio la lista de países antes de agregar nuevos elementos
+        listaDePaises.innerHTML = "";
 
-        if (resultado.length === 0) {
-            alert("No se encontraron países con ese nombre");
-            return;
-        }
+        // Recorro los datos y los agrego a la lista
+        datosApi.forEach(datos => agregarPaisALaLista(datos));
 
-        // Crear elementos para cada país encontrado
-        resultado.forEach(pais => {
+        // Vinculo eventos al campo de búsqueda y botón
+        const inputBuscar = document.getElementById("inputBuscar"); // Campo de entrada
+        const btnBuscar = document.getElementById("btnBuscar"); // Botón de búsqueda
 
-            const item = document.createElement("div");
-            item.className = "collection-item";
-
-            // Nombre del país
-            const nombrePais = document.createElement("span");
-            nombrePais.textContent = pais.name.common;
-
-            // Btn para ver detalles
-            const btnDetalles = document.createElement("button");
-            btnDetalles.className = "btn waves-effect waves-light blue darken-3";
-            btnDetalles.textContent = "Ver detalles";
-            btnDetalles.style.marginLeft = "10px";
-            btnDetalles.addEventListener("click", () => mostrarNombreModal(pais));
-
-            // Agregar el nombre y botón al contenedor del país
-            item.appendChild(nombrePais);
-            item.appendChild(btnDetalles);
-
-            // Agrega 
-            resultados.appendChild(item);
-        });
+        inputBuscar.addEventListener("input", () => filtrarPaises(datosApi)); // Filtrar mientras se escribe
+        btnBuscar.addEventListener("click", () => filtrarPaises(datosApi)); // Filtrar al hacer clic en el botón
 
     } catch (e) {
-        
-        console.error("Error al buscar el país:", e);
-        
+        console.error("Error al listar los países", e); // Si ocurre un error, lo muestro en consola
     }
 }
 
 
-function mostrarNombreModal(datos){
+function agregarPaisALaLista(datos) {
 
+    let listaDePaises = document.getElementById("listaPaises");
+
+    let itemLista = document.createElement("li");
+    itemLista.classList.add("collection-item");
+    itemLista.dataset.nombre = datos.name.common.toLowerCase();
+
+    const paises = document.createElement("span");
+    paises.innerHTML = `
+        <i class="material-icons" style="vertical-align: middle; color: #252525; margin-right: 8px;">public</i> 
+        ${datos.name.common} - ${datos.capital ? datos.capital[0] : "No disponible"}
+    `;
+
+    let btnDetalles = document.createElement("button");
+    btnDetalles.textContent = "Ver detalles del país";
+    btnDetalles.classList.add("btn", "blue", "darken-1");
+    btnDetalles.addEventListener("click", () => mostrarModal(datos));
+
+    itemLista.appendChild(paises);
+    itemLista.appendChild(btnDetalles);
+    listaDePaises.appendChild(itemLista);
+
+}
+
+function filtrarPaises(datosApi) {
+
+    let inputBuscar = document.getElementById("inputBuscar").value.toLowerCase();
+    let listaDePaises = document.getElementById("listaPaises");
+    listaDePaises.innerHTML = "";
+
+    
+    datosApi.filter(pais => pais.name.common.toLowerCase().includes(inputBuscar)).forEach(datos => agregarPaisALaLista(datos));// Filtrar países por nombre
+
+}
+
+function mostrarModal(datos) {
+    
     const nombreDelPais = document.getElementById("nombrePais");
     const banderaPais = document.getElementById("banderaPais");
     const nombreNativo = document.getElementById("nativo");
@@ -93,44 +91,35 @@ function mostrarNombreModal(datos){
     const capital = document.getElementById("capitalPais");
 
     nombreDelPais.textContent = datos.name.common;
-
-    banderaPais.src = datos.flags.png; 
+    banderaPais.src = datos.flags.png;
     banderaPais.alt = `Bandera de ${datos.name.common}`;
 
-
-    if (datos.name.nativeName && datos.name.nativeName.eng) {
-
-        nombreNativo.textContent = datos.name.nativeName.eng.official;
+    if (datos.name.nativeName) {  // si hay un nombre nativo disponible
+       
+        nombreNativo.textContent = Object.values(datos.name.nativeName)[0]?.official || "Nombre nativo no disponible";
 
     } else {
+
+        nombreNativo.textContent = "Nombre nativo no disponible"; // si no hay, muestro mensaje
         
-        nombreNativo.textContent = "Nombre nativo no disponible";
     }
 
     poblacion.textContent = datos.population.toLocaleString();
-    
 
     lenguaje.textContent = JSON.stringify(Object.values(datos.languages)).replace(/[\[\]"]+/g, "");//lo paso a JSON.STRINGIIFY  por que al pasar solo la propieda datos.languajes me retorna object object ese problema se da por esos datos son objetos no cadenas entonces por eso uso ese metodo de json
-
-    console.log(JSON.stringify(datos.languages));
-
-    capital.textContent = datos.capital ?  datos.capital[0] : "No disponible";
-
+    
+    capital.textContent = datos.capital ? datos.capital[0] : "No disponible";
 
     const modal = M.Modal.getInstance(document.getElementById("modalPais"));
     modal.open();
 
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    // inicializo el modal
+    listarPaises();
+
     const modales = document.querySelectorAll(".modal");
     M.Modal.init(modales);
 
-    // asigno el btnbuscar el evento click de buscr por nombre
-    const btnBuscar = document.getElementById("btnBuscar");
-    btnBuscar.addEventListener("click", buscarPorNombre);
-
-});//llamo a la funcion cuando el html document este cargado.
+});

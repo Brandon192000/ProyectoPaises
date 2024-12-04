@@ -7,63 +7,94 @@
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/buscarPorRegion.css">
-
 </head>
 <body>
-    <!-- Navbar -->
+
+    <!-- Barra de navegación -->
     <nav class="black">
         <div class="nav-wrapper container" style="height: 100px; padding: 0 10px;">
-            <a href="/html/index.html" class="brand-logo">
-                <img src="/img/earth-11015_640.jpg" alt="Logo" style="height: 100%; max-height: 65px; width: auto;">
+            <!-- Botón para abrir el SideNav -->
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <!-- Logo -->
+            <a href="#" class="brand-logo">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" class="imagennav">
             </a>
+            <!-- Navegación en pantallas grandes -->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/html/index.html">Inicio</a></li>
-                <li><a href="/html/BuscarPorNombre.html">Países por Nombre</a></li>
-                <li><a href="/html/buscarPorRegion.html">Países por Región</a></li>
+                <li><a href="/html/BuscarPorNombre.html">Busqueda por Nombre</a></li>
+                <li><a href="/html/buscarPorRegion.html">Busqueda por Región</a></li>
             </ul>
         </div>
     </nav>
 
-
-    <!-- Contenido principal -->
-    <main>
-        <div class="card-panel">
-            <h4 class="blue-text text-darken-3">Buscar por Región</h4>
-            <div class="input-field">
-                <select id="selectRegion">
-                    <!-- Opciones cargadas dinámicamente -->
-                </select>
-                <label>Región</label>
+    <ul class="sidenav sidenav-custom" id="mobile-menu">
+        <!-- Logo en el menú lateral -->
+        <li>
+            <div class="sidenav-header center-align">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" class="responsive-img" style="max-width: 130px; margin: 20px auto;">
+                <h5 class="white-text" style="margin-top: 10px;">Gestión de Países</h5>
             </div>
+        </li>
+        <li><a href="#" class="white-text"><i class="material-icons white-text">home</i>Inicio</a></li>
+        <li><a href="/html/BuscarPorNombre.html" class="white-text"><i class="material-icons white-text">search</i>Busqueda por Nombre</a></li>
+        <li><a href="/html/buscarPorRegion.html" class="white-text"><i class="material-icons white-text">map</i>Busqueda por Región</a></li>
+    </ul>
+
+
+    <main>
+        <div class="custom-BuscarRegion container">
+            <section class="card-panel">
+                <h4 class="tituloBuscar">Buscar por Región</h4>
+                <article class="input-field">
+                    <select class="customCmb" id="selectRegion">
+                        <option value="" selected disabled>Seleccione una región</option>
+                    </select>
+                    <label class="black-text">Región</label>
+                </article>
+            </section>
         </div>
-        <div id="contenedorPaises" class="column">
-            <!-- Aquí se cargarán las tarjetas de los países -->
+
+        <div class="contenedor-Total-Paises">
+            <section id="contenedorPaises" class="row"></section>
         </div>
+
+        <section id="modalPais" class="modal">
+            <article class="modal-content">
+                <h4 id="nombrePais" class="center-align"></h4>
+                <div class="center-align">
+                    <img id="banderaPais" alt="Bandera del País" style="width: 150px; height: auto; margin: 20px 0;">
+                </div>
+                <div class="pais-detalles">
+                    <p><strong>Nombre nativo:</strong> <span id="nativo"></span></p>
+                    <p><strong>Población:</strong> <span id="poblacionPais"></span></p>
+                    <p><strong>Idiomas:</strong> <span id="lenguajesPais"></span></p>
+                    <p><strong>Capital:</strong> <span id="capitalPais"></span></p>
+                </div>
+            </article>
+            <article class="modal-footer">
+                <button class="modal-close btn blue darken-1">Cerrar</button>
+            </article>
+        </section>
     </main>
 
-    <!-- Modal Structure -->
-    <div id="modalPais" class="modal">
-        <div class="modal-content">
-            <h4 id="nombrePais" class="center-align"></h4>
-            <div class="center-align">
-                <img id="banderaPais" alt="Bandera del País" style="width: 150px; height: auto; margin: 20px 0;">
-            </div>
-            <div class="pais-detalles">
-                <p><strong>Nombre nativo:</strong> <span id= "nativo"></span></p>
-                <p><strong>Población:</strong> <span id="poblacionPais"></span></p>
-                <p><strong>Idiomas:</strong> <span id="lenguajesPais"></span></p>
-                <p><strong>Capital:</strong> <span id="capitalPais"></span></p>
-
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="modal-close btn blue darken-1">Cerrar</button>
-        </div>
-    </div>
+    <footer class="footer-custom">
+        <div class="center-align">© 2024, Derechos reservados Brandon Blanco Chinchilla</div>
+    </footer>
     
+
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/js/buscarPorRegion.js"></script>
+    <script>
+        // Inicializa el SideNav para móviles
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidenavs = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(sidenavs);
+        });
+    </script>
+    
 </body>
 </html>

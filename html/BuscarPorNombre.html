@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar por Nombre</title>
+    <title>Gestión de Países</title>
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
@@ -11,53 +11,58 @@
 </head>
 <body>
 
-    <header>
-        
-    <!-- Navbar -->
+    
     <nav class="black">
-        <div class="nav-wrapper container" style="height: 100px; padding: 0 10px;">
-            <a href="/html/index.html" class="brand-logo">
-                <img src="/img/earth-11015_640.jpg" alt="Logo" style="height: 100%; max-height: 65px; width: auto;">
+        <div class="nav-wrapper container">
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" class="responsive-img imagennav"
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/html/index.html">Inicio</a></li>
-                <li><a href="/html/BuscarPorNombre.html">Países por Nombre</a></li>
-                <li><a href="/html/buscarPorRegion.html">Países por Región</a></li>
+                <li><a href="/html/BuscarPorNombre.html">Busqueda por Nombre</a></li>
+                <li><a href="/html/buscarPorRegion.html">Busqueda por Región</a></li>
             </ul>
         </div>
     </nav>
 
-    </header>
-    <!-- Contenedor principal -->
-    <div class="container contenedor-buscdorCustom">
-        <!-- Card para centrar contenido -->
-        <div class="row">
-            <div class="col s12 m8 offset-m2">
+    <ul class="sidenav sidenav-custom" id="mobile-menu">
+        <!-- Logo en el menú lateral -->
+        <li>
+            <div class="sidenav-header center-align">
+                <img src="/img/earth-11015_640.jpg" alt="Logo" class="responsive-img" style="max-width: 130px; margin: 20px auto;">
+                <h5 class="white-text" style="margin-top: 10px;">Gestión de Países</h5>
+            </div>
+        </li>
+        <li><a href="/html/index.html" class="white-text"><i class="material-icons white-text">home</i>Inicio</a></li>
+        <li><a href="/html/BuscarPorNombre.html" class="white-text"><i class="material-icons white-text">search</i>Busqueda por Nombre</a></li>
+        <li><a href="/html/buscarPorRegion.html" class="white-text"><i class="material-icons white-text">map</i>Busqueda por Región</a></li>
+    </ul>
+
+
+    <main class="container">
+        <section class="row">
+            <article class="col s12 m8 offset-m2 custom-Buscar">
                 <div class="card-panel white">
-                    <h4 class="center-align blue-text text-darken-3">Buscar por Nombre</h4>
-                    <!-- Formulario de búsqueda -->
-                    <div class="input-field">
-                        <i class="material-icons prefix">location_searching</i>
-                        <input id="inputBuscar" type="text" class="validate" placeholder="Ingrese el nombre del país">
-                    </div>
-                    <div class="center-align">
-                        <button id="btnBuscar" class="btn waves-effect waves-light blue darken-3" type="button">
-                            Buscar
-                            <i class="material-icons right">search</i>
-                        </button>
+                    <h4 class="center-align tituloPaises tituloNombre">Buscar por Nombre</h4>
+                    <div class="input-field" style="display: flex; align-items: center;">
+                        <i class="material-icons prefix">search</i>
+                        <input id="inputBuscar" type="text" placeholder="Ingrese el nombre:" style="flex-grow: 1; margin-right: 10px;">
+                        <button id="btnBuscar" class="btn blue darken-1">Buscar</button>
                     </div>
                 </div>
-            </div>
+            </article>
+        </section>
+
+        <section id="listaPaisesContainer" class="container">
+            <h5 class="center-align tituloPaises">Lista de Países</h5>     
+        </section>
+
+        <div class="scrollLista container">
+            <ul class="collection" id="listaPaises"></ul>
         </div>
 
-        <!-- Resultados -->
-        <div id="resultados" class="row">
-
-        
-        </div>
-
-        
-        <!-- Modal Structure -->
+        <!-- Modal -->
         <div id="modalPais" class="modal">
             <div class="modal-content">
                 <h4 id="nombrePais" class="center-align"></h4>
@@ -75,13 +80,20 @@
                 <button class="modal-close btn blue darken-1">Cerrar</button>
             </div>
         </div>
+    </main>
 
-    </div>
+    <footer class="footer-custom">
+        <div class="center-align">&copy; 2024, Derechos reservados Brandon Blanco Chinchilla</div>
+    </footer>
 
-
-    <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/js/buscarProNombre.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidenav = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(sidenav);
+        });
+    </script>
 
 </body>
 </html>

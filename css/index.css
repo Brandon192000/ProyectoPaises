@@ -1,9 +1,9 @@
 body {
-    background-image: url('/img/pngtree-light-blue-marble-vector-pattern-a-stunning-texture-of-marble-image_13909367.png'); /* Reemplaza con la URL de tu imagen */
-    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen */
+    background-image: url('/img/pngtree-light-blue-marble-vector-pattern-a-stunning-texture-of-marble-image_13909367.png');
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Hace que la imagen sea fija al hacer scroll */
+    background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Efecto de vidrio con ::before */
+
 body::before {
     content: '';
     position: absolute;
@@ -20,49 +20,162 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(8px); /* Efecto de desenfoque */
-    background-color: rgba(255, 255, 255, 0.3); /* Color semitransparente superpuesto */
-    z-index: -1; /* Coloca el efecto detrás del contenido */
+    backdrop-filter: blur(8px); 
+    background-color: rgba(255, 255, 255, 0.3); 
+    z-index: -1;
 }
 
 
-.collection-item {
+main {
+    position: relative; 
+    z-index: 1;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 10px 15px;
+    min-height: 100vh; 
+    padding: 20px;
+    text-align: center;
 }
 
-.collection-item .btn {
-    background-color: #2196f3;
-    text-transform: none;
+/* Estilo del footer */
+.footer-custom {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; 
+    z-index: 1;
 }
 
-.collection-item .btn:hover {
-    background-color: #1e88e5;
-}
-
-
-.modal {
-    max-width: 500px;
+/* Descripción */
+.custom-description {
+    max-width: 100%;
+    padding: 20px;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.8); 
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1; 
 }
 
-.modal-content {
-    text-align: left;
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1; 
 }
 
-.pais-detalles p {
-    margin: 10px 0;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.brand-logo i {
-    vertical-align: middle;
-}
-nav li::hover{
-    background-color: #1e88e5;
+.row .col {
+    flex: 1 1 300px;
+    display: flex;
+    max-width: 400px;
 }
 
 
+.tituloDescripcioPaginas{
+    
+    text-align: center;
+    font-family: Arial Black;
+    font-weight: bold;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 0 1px 0 #252525, 0 2px 0 #252525, 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 0 #acacac,
+        0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+        0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+        0 20px 20px rgba(0, 0, 0, 0.15);
+
+} 
+
+.imagennav{
+
+    height: 100%;
+    max-height: 62px;
+    width: auto;
+}
+
+.sidenav-custom {
+    background-color: #252525; /* Color de fondo oscuro */
+    color: white; /* Texto blanco */
+}
+
+.sidenav-custom a {
+    color: white; /* Enlaces en blanco */
+    font-weight: bold;
+}
+
+.sidenav-header {
+    padding: 10px 0;
+    border-bottom: 1px solid #444; /* Línea divisoria */
+}
+
+.sidenav-custom a:hover {
+    background-color: #1e88e5; /* Color de fondo al pasar el mouse */
+}
+
+/* Media Queries para responsividad */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 768px) {
+    .custom-description {
+        max-width: 95%; /* Más espacio en tablets */
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .row {
+        gap: 15px; /* Reduce el espacio entre columnas */
+    }
+
+    .row .col {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .tituloDescripcioPaginas {
+        font-size: 1.8rem; /* Reduce el tamaño del título */
+    }
+
+    .footer-custom {
+        font-size: 0.9rem; /* Ajusta el texto del footer */
+        padding: 8px 0;
+    }
+}
+
+/* Pantallas pequeñas (celulares) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Reduce el tamaño de fuente general */
+    }
+
+    .custom-description {
+        max-width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .row .col {
+        max-width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 10px;
+    }
+
+    .tituloDescripcioPaginas {
+        font-size: 1.5rem; /* Reduce aún más el título */
+    }
+
+    .footer-custom {
+        font-size: 0.8rem; /* Reduce el texto del footer */
+        padding: 5px 0;
+    }
+
+    .imagennav{
+
+        height: 100%;
+        max-height: 55px;
+        width: auto;
+    }
+    
+}
