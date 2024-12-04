@@ -1,46 +1,50 @@
 async function listarPaises() {
-    const listaDePaises = document.getElementById("listaPaises"); // Contenedor donde muestro los países
+    const listaDePaises = document.getElementById("listaPaises");
 
     try {
-        let datosApi; // Variable para almacenar los datos
+        let datosApi;
 
-        // Verifico si hay datos en el localStorage
         if (localStorage.getItem("paises")) {
-
             console.log("Cargando datos desde el localStorage");
-            datosApi = JSON.parse(localStorage.getItem("paises")); // Obtengo los datos del localStorage
+            datosApi = JSON.parse(localStorage.getItem("paises"));
+        } else {
+            console.log("Solicitando datos a la API");
+            const respuestaApi = await fetch("https://restcountries.com/v3.1/all");
+            if (!respuestaApi.ok) {
+                throw new Error("Error al obtener los datos de la API");
+            }
+            datosApi = await respuestaApi.json();
+            localStorage.setItem("paises", JSON.stringify(datosApi));
+        }
+
+        listaDePaises.innerHTML = "";
+
+        // Verificar si existe un término de búsqueda guardado
+        const ultimoFiltro = localStorage.getItem("ultimoFiltro");
+
+        if (ultimoFiltro) {
+
+            document.getElementById("inputBuscar").value = ultimoFiltro; // Restaurar el filtro en el 
+            
+            datosApi.filter(pais => pais.name.common.toLowerCase().includes(ultimoFiltro))
+            .forEach(datos => agregarPaisALaLista(datos)); // Aplicar el filtro
 
         } else {
 
-            console.log("Solicitando datos a la API");
-
-            const respuestaApi = await fetch("https://restcountries.com/v3.1/all"); // Solicito los datos a la API
-
-            if (!respuestaApi.ok) {
-                throw new Error("Error al obtener los datos de la API"); // Manejo de errores en caso de respuesta no OK
-            }
-
-            datosApi = await respuestaApi.json(); // Paso a JSON
-
-            localStorage.setItem("paises", JSON.stringify(datosApi)); // Guardo los datos en el localStorage
-
+            datosApi.forEach(datos => agregarPaisALaLista(datos)); // Mostrar todos los países
+            
         }
 
-        // Limpio la lista de países antes de agregar nuevos elementos
-        listaDePaises.innerHTML = "";
+        const inputBuscar = document.getElementById("inputBuscar");
+        const btnBuscar = document.getElementById("btnBuscar");
 
-        // Recorro los datos y los agrego a la lista
-        datosApi.forEach(datos => agregarPaisALaLista(datos));
-
-        // Vinculo eventos al campo de búsqueda y botón
-        const inputBuscar = document.getElementById("inputBuscar"); // Campo de entrada
-        const btnBuscar = document.getElementById("btnBuscar"); // Botón de búsqueda
-
-        inputBuscar.addEventListener("input", () => filtrarPaises(datosApi)); // Filtrar mientras se escribe
-        btnBuscar.addEventListener("click", () => filtrarPaises(datosApi)); // Filtrar al hacer clic en el botón
+        inputBuscar.addEventListener("input", () => filtrarPaises(datosApi));
+        btnBuscar.addEventListener("click", () => filtrarPaises(datosApi));
 
     } catch (e) {
-        console.error("Error al listar los países", e); // Si ocurre un error, lo muestro en consola
+
+        console.error("Error al listar los países", e);
+
     }
 }
 
@@ -73,6 +77,7 @@ function agregarPaisALaLista(datos) {
 function filtrarPaises(datosApi) {
 
     let inputBuscar = document.getElementById("inputBuscar").value.toLowerCase();
+    localStorage.setItem("ultimoFiltro", inputBuscar);
     let listaDePaises = document.getElementById("listaPaises");
     listaDePaises.innerHTML = "";
 
